@@ -19,3 +19,13 @@ H_SOURCE = libft.h
 # object files
 OBJ = $(C_SOURCE:.c=.o)
 
+all: $(NAME)
+$(NAME): $(OBJ)
+	$(CC) -o $(NAME) $(OBJ)
+
+$(OBJ): $(C_SOURCE)
+	$(CC) -o $(OBJ) -c $(C_SOURCE) $(CFLAGS)
+
+clean:
+	rm -rf $(OBj)
+
