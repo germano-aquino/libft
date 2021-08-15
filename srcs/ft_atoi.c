@@ -1,5 +1,6 @@
 #include <limits.h>
-const int numberNotValid(const char *str)
+
+static int ft_numberNotValid(const char *str)
 {
     int i;
 
@@ -15,7 +16,7 @@ const int numberNotValid(const char *str)
     return (0);
 }
 
-const int getSignal(char signal)
+static int ft_getSignal(char signal)
 {
     if (signal == '-')
         return (-1);
@@ -29,7 +30,7 @@ int ft_atoi(const char *str)
     int     signal;
     long int    number;
 
-    if (!str || numberNotValid(str))
+    if (!str || ft_numberNotValid(str))
         return (0);
     i = 0;
     if (str[0] == '+' || str[0] == '-')
@@ -41,8 +42,8 @@ int ft_atoi(const char *str)
         i++;
     }
     if (number <= INT_MAX)
-        return (getSignal(str[0]) * number);
-    else if (getSignal(str[0]) == 1 )
+        return (ft_getSignal(str[0]) * number);
+    else if (ft_getSignal(str[0]) == 1 )
         return (INT_MAX);
     else
         return (INT_MIN);
