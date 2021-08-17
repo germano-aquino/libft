@@ -2,8 +2,8 @@
 
 void    *ft_memset(void *block, int c, size_t size)
 {
-    int i;
-    unsigned char *str;
+    size_t          i;
+    unsigned char   *str;
 
     i = 0;
     str = block;

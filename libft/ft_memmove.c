@@ -5,7 +5,7 @@ void    *ft_memmove(void *to, const void *from, size_t size)
     const char  *src;
     char        *dest;
     char        temp[size];
-    int         i;
+    size_t         i;
 
     src = from;
     dest = to;
@@ -16,7 +16,7 @@ void    *ft_memmove(void *to, const void *from, size_t size)
         i++;
     }
     i = 0;
-    while(i < size)
+    while (i < size)
     {
         dest[i] = temp[i];
         i++;

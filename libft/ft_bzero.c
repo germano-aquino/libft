@@ -2,8 +2,8 @@
 
 void    ft_bzero(void *block, size_t size)
 {
-    unsigned char *str;
-    int i;
+    unsigned char   *str;
+    size_t          i;
 
     i = 0;
     str = block;

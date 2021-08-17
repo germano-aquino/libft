@@ -2,7 +2,7 @@
 
 void    *ft_memcpy(void *restrict to, const void *restrict from, size_t size)
 {
-    int         i;
+    size_t         i;
     const char  *src;
     char        *dest;
 

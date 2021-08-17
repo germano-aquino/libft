@@ -27,7 +27,6 @@ static int ft_getSignal(char signal)
 int ft_atoi(const char *str)
 {
     int     i;
-    int     signal;
     long int    number;
 
     if (!str || ft_numberNotValid(str))

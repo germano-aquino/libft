@@ -8,7 +8,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 
 # name of the project
-NAME = libft
+NAME = libft.a
 
 # .c files
 C_SOURCE = $(wildcard *.c)
@@ -21,11 +21,17 @@ OBJ = $(C_SOURCE:.c=.o)
 
 all: $(NAME)
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
-
-$(OBJ): $(C_SOURCE)
-	$(CC) -o $(OBJ) -c $(C_SOURCE) $(CFLAGS)
+	ar rcs $(NAME) $(OBJ) 
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(C_SOURCE)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
 
 clean:
-	rm -rf $(OBj)
+	rm -rf $(OBJ)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re:	fclean all
+
 

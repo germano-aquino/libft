@@ -12,7 +12,7 @@ int ft_diffsign(int a, int b)
 
 int ft_memcmp(const void *s1, const void *s2, size_t size)
 {
-    int i;
+    size_t i;
     char    *pt1;
     char    *pt2;
 

@@ -2,25 +2,25 @@
 
 static int  ft_getNumberOfStrings(const char *s, char c)
 {
-    int number;
-    int stringAccounted;
+    int counter;
+    int newStringWasCounted;
     int i;
 
-    number = 0;
+    counter = 0;
     i = 0;
-    stringAccounted = 0;
+    newStringWasCounted = 0;
     while (s[i] != '\0')
     {
-        if (!stringAccounted && s[i] != c)
+        if (!newStringWasCounted && s[i] != c)
         {
-            number++;
-            stringAccounted = 1;
+            counter++;
+            newStringWasCounted = 1;
         }
-        if (stringAccounted && s[i] == c)
-            stringAccounted = 0;
+        if (newStringWasCounted && s[i] == c)
+            newStringWasCounted = 0;
         i++;
     }
-    return (number);
+    return (counter);
 }
 
 static int  ft_getNextValidIndex(char const *s, char c, int index)
