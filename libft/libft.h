@@ -14,6 +14,8 @@ int		ft_isdigit(int c);
 
 int		ft_isprint(int c);
 
+char	*ft_itoa(int n);
+
 void    *ft_memchr(const void *block, int c, size_t size);
 
 int     ft_memcmp(const void *s1, const void *s2, size_t size);
