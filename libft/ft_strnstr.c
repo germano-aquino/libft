@@ -2,21 +2,21 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t size)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
-	if (!big || !little)
+	if (!big && !little)
 		return (0);
+	if (*little == '\0')
+		return ((char *)big);
 	i = 0;
 	j = 0;
-	while (size--)
+	while (i < size)
 	{
-		while (big[i + j] == little[j])
-		{
-			if (little[j + 1] == '\0')
-				return ((char *)(big + i));
+		while (big[i + j] == little[j] && little[j] != '\0')
 			j++;
-		}
+		if (little[j] == '\0' && i + j - 1 <= size)
+			return ((char *)(big + i));
 		j = 0;
 		i++;
 	}
