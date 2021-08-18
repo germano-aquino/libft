@@ -1,11 +1,25 @@
 #include <limits.h>
 
-int	ft_atoi(const char *str)
+static void	ft_getNumber(char *str, int *number, int signal, int *count)
 {
 	int	i;
+
+	i = 0;
+	*number = 0;
+	while ('0' <= str[i] && str[i] <= '9')
+	{
+		*count++;
+		*number = *number * 10 + signal * (str[i] - '0');
+		i++;
+	}
+}
+
+int	ft_atoi(const char *str)
+{
+	int				i;
 	long long int	number;
-	int	signal;
-	int	count;
+	int				signal;
+	int				count;
 
 	i = 0;
 	count = 0;
@@ -18,16 +32,10 @@ int	ft_atoi(const char *str)
 			signal = -1;
 		i++;
 	}
-	number = 0;
-	while ('0' <= str[i] && str[i] <= '9')
-	{
-		count++;
-		number = number * 10 + signal * (str[i] - '0');
-		i++;
-	}
+	ft_getNumber(str + i, &number, signal, &count);
 	if (count > 10 && signal == -1)
 		return (0);
-	else if(count > 10 && signal == 1)
+	else if (count > 10 && signal == 1)
 		return (-1);
 	return (number);
 }

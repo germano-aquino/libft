@@ -24,6 +24,9 @@ void	*ft_memset(void * block, int c, size_t size);
 
 void	*ft_memcpy(void *to, const void *from, size_t size);
 
+void	*ft_memccpy(void *restrict to, const void *restrict from, int c,
+	size_t size);
+
 char	*ft_strchr(const char * str, int c);
 
 char    *ft_strdup(const char *str);

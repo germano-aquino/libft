@@ -1,11 +1,13 @@
 int	ft_isalnum(int c)
 {
-	if ('a' <= c && c <= 'z')
+	unsigned char	ch;
+
+	ch = (unsigned char) c;
+	if ('a' <= ch && ch <= 'z')
 		return (1);
-	else if ('A' <= c && c <= 'Z')
+	if ('A' <= ch && ch <= 'Z')
 		return (1);
-	else if ('0' <= c && c <= '9')
+	if ('0' <= ch && ch <= '9')
 		return (1);
-	else
-		return (0);
+	return (0);
 }

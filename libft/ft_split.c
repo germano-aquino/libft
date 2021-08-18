@@ -63,7 +63,7 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	i = 0;
 	startIndex = 0;
-	while (i < numberOfStrings)
+	while (i < ft_getNumberOfStrings(s, c))
 	{
 		startIndex = ft_getNextValidIndex(s, c, startIndex);
 		endIndex = ft_getLastValidIndex(s, c, startIndex);
