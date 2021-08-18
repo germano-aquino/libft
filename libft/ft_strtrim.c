@@ -22,6 +22,8 @@ static int	ft_getStrTrimLength(char const *str, char const *set)
 	startIndex = 0;
 	while (ft_isCharInSet(str[startIndex], set))
 		startIndex++;
+	if (str[startIndex] == '\0')
+		return (0);
 	endIndex = startIndex;
 	while (str[endIndex] != '\0')
 		endIndex++;

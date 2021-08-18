@@ -10,7 +10,7 @@ void	*ft_calloc(size_t count, size_t eltsize)
 	ptr = malloc(count * eltsize);
 	if (!ptr)
 		return (0);
-	str = ptr;
+	str = (unsigned char *)ptr;
 	while (i < count)
 	{
 		str[i] = (unsigned char) 0;
