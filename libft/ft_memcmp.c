@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-static int	ft_diffsign(int a, int b)
+static int	ft_diffsign(unsigned char a, unsigned char b)
 {
 	if (a > b)
 		return (1);
