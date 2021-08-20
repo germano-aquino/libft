@@ -11,7 +11,7 @@ void	*ft_calloc(size_t count, size_t eltsize)
 	if (!ptr)
 		return (0);
 	str = (unsigned char *)ptr;
-	while (i < count)
+	while (i < count * eltsize)
 	{
 		str[i] = (unsigned char) 0;
 		i++;

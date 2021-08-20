@@ -22,9 +22,9 @@ OBJ = $(C_SOURCE:.c=.o)
 all: $(NAME)
 $(NAME): $(OBJ)
 	ar rcs $(NAME) $(OBJ) 
-#so:
-#	$(CC) -nostartfiles -fPIC $(CFLAGS) $(C_SOURCE)
-#	gcc -nostartfiles -shared -o libft.so $(OBJ)
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(C_SOURCE)
+	gcc -nostartfiles -shared -o libft.so $(OBJ)
 
 clean:
 	rm -rf $(OBJ)

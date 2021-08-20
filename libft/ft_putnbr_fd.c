@@ -3,16 +3,13 @@
 
 static void	ft_handleNegatives(int *nbr, int fd)
 {
-	if (*nbr < 0)
+	write(fd, "-", 1);
+	if (*nbr == -2147483648)
 	{
-		write(fd, "-", 1);
-		if (*nbr == -2147483648)
-		{
-			write(fd, "2147483648", 10);
-			*nbr = 0;
-		}
-		*nbr = -*nbr;
+		write(fd, "2147483648", 10);
+		*nbr = 0;
 	}
+	*nbr = -*nbr;
 }
 
 void	ft_putnbr_fd(int n, int fd)
@@ -25,7 +22,8 @@ void	ft_putnbr_fd(int n, int fd)
 	firstDigitNoZero = 0;
 	if (n == 0)
 		write(fd, "0", 1);
-	ft_handleNegatives(&n, fd);
+	if (n < 0)
+		ft_handleNegatives(&n, fd);
 	while (n)
 	{
 		dig = n / tenPower + '0';

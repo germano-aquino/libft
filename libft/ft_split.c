@@ -78,7 +78,10 @@ char	**ft_split(char const *s, char c)
 		ft_getValidIndexes(s, c, &startIndex, &endIndex);
 		split[i] = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2));
 		if (split[i] == NULL)
+		{
+			free(split);
 			return (0);
+		}
 		ft_copyStringToPtr(s, startIndex, endIndex, split[i]);
 		startIndex = endIndex + 1;
 		i++;
