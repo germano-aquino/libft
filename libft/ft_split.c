@@ -1,6 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 static int	ft_getNumberOfStrings(const char *s, char c)
 {
@@ -25,83 +23,69 @@ static int	ft_getNumberOfStrings(const char *s, char c)
 	return (counter);
 }
 
-static void	ft_getValidIndexes(char const *s, char c, int *sindex, int *eindex)
+static void	ft_getValidIndexes(char const *s, char c, int *indexes)
 {
 	int	index;
 
-	index = *sindex;
+	index = indexes[0];
 	while (s[index] == c)
 		index++;
-	*sindex = index;
-	while (s[index] != c || s[index] == '\0')
+	indexes[0] = index;
+	while (s[index] != c && s[index] != '\0')
 		index++;
-	*eindex = index - 1;
+	indexes[1] = index - 1;
 }
 
-static void	ft_copyStringToPtr(char const *s, int startIndex, int endIndex,
-	char *ptr)
+static void	ft_copyStringToPtr(char const *s, int *indexes, char *ptr)
 {
 	int	i;
 
 	i = 0;
-	while (i < endIndex - startIndex + 1)
+	while (i < indexes[1] - indexes[0] + 1)
 	{
-		ptr[i] = s[startIndex + i];
+		ptr[i] = s[indexes[0] + i];
 		i++;
 	}
 	ptr[i] = '\0';
+	indexes[0] = indexes[1] + 1;
 }
 
-static void	ft_variablesInitiation(int *i, int *sIndex)
+static void	ft_variablesInitiation(int *indexes)
 {
-	*i = 0;
-	*sIndex = 0;
+	indexes[0] = 0;
+	indexes[1] = 0;
+	indexes[2] = 0;
 }
 
+	//ind[] is a vector of indexes where
+	//ind[0] is the start index of the string to be splitted
+	//ind[1] is the end index of the string to be splitted
+	//ind[2] is a iterable index of split
 char	**ft_split(char const *s, char c)
 {
-	int		startIndex;
-	int		endIndex;
+	int		ind[3];
 	int		nStr;
-	int		i;
 	char	**split;
 
-	ft_variablesInitiation(&i, &startIndex);
-	nStr = ft_getNumberOfStrings(s, c);
+	ft_variablesInitiation(ind);
 	if (s == NULL)
 		return (0);
+	nStr = ft_getNumberOfStrings(s, c);
 	split = (char **) malloc(sizeof(char *) * (nStr + 1));
 	if (split == NULL)
 		return (0);
-	while (i < nStr)
+	while (ind[2] < nStr)
 	{
-		ft_getValidIndexes(s, c, &startIndex, &endIndex);
-		split[i] = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2));
-		if (split[i] == NULL)
+		ft_getValidIndexes(s, c, ind);
+		split[ind[2]] = (char *)malloc(sizeof(char) * (ind[1] - ind[0] + 2));
+		if (split[ind[2]] == NULL)
 		{
 			free(split);
 			return (0);
 		}
-		ft_copyStringToPtr(s, startIndex, endIndex, split[i]);
-		startIndex = endIndex + 1;
-		i++;
+		ft_copyStringToPtr(s, ind, split[ind[2]]);
+		ind[2]++;
 	}
-	split[i] = NULL;
+	split[ind[2]] = NULL;
 	return (split);
 }
-
-/* int main()
-{
-	char **split;
-	int i;
-	split = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.", 'i');
-
-//	split = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
-	i = 0;
-	while(split[i] != NULL)
-	{
-		printf("palavra[%d]: %s\n", i + 1, split[i]);
-		i++;
-	}
-	return (0);
-} */
