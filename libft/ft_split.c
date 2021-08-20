@@ -68,7 +68,6 @@ char	**ft_split(char const *s, char c)
 
 	ft_variablesInitiation(&i, &startIndex);
 	nStr = ft_getNumberOfStrings(s, c);
-	printf("%d\n", nStr);
 	if (s == NULL)
 		return (0);
 	split = (char **) malloc(sizeof(char *) * (nStr + 1));
@@ -81,20 +80,25 @@ char	**ft_split(char const *s, char c)
 		if (split[i] == NULL)
 			return (0);
 		ft_copyStringToPtr(s, startIndex, endIndex, split[i]);
-		//printf("palavra[%d]: %s %lu\n", i, split[i], strlen(split[i]));
 		startIndex = endIndex + 1;
 		i++;
 	}
 	split[i] = NULL;
 	return (split);
 }
-/* 
-int main()
+
+/* int main()
 {
 	char **split;
 	int i;
+	split = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.", 'i');
 
-	split = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
-	for (i = 0; i < 13; i++) printf("palavras: %s\n", split[i]);
+//	split = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
+	i = 0;
+	while(split[i] != NULL)
+	{
+		printf("palavra[%d]: %s\n", i + 1, split[i]);
+		i++;
+	}
 	return (0);
 } */
