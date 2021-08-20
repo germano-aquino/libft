@@ -24,9 +24,9 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, "0", 1);
 	if (n < 0)
 		ft_handleNegatives(&n, fd);
-	while (n)
+	while (tenPower)
 	{
-		dig = n / tenPower + '0';
+		dig = (n / tenPower) + '0';
 		if (firstDigitNoZero || dig != '0')
 		{
 			firstDigitNoZero = 1;

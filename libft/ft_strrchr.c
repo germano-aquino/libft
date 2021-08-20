@@ -5,7 +5,7 @@ char	*ft_strrchr(const char *str, int c)
 	len = 0;
 	while (str[len] != '\0')
 		len++;
-	while (len >= 0 && str[len] != c)
+	while (len >= 0 && str[len] != (unsigned char)c)
 		len--;
 	if (len != -1)
 		return ((char *)(str + len));
