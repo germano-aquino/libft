@@ -2,7 +2,7 @@
 # $(NAME), all, clean, fclean and re.
 
 # define the C compiler
-CC = clang-11
+CC = clang
 
 # define any compile-time flags
 CFLAGS = -Wall -Wextra -Werror

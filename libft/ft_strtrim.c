@@ -40,9 +40,11 @@ char	*ft_strtrim(char const *str, char const *set)
 	int		i;
 	char	*ptr;
 
+	if (str == NULL)
+		return (0);
 	len = ft_getStrTrimLength(str, set);
 	ptr = (char *) malloc((len + 1) * sizeof(char));
-	if (!str || !ptr)
+	if (ptr == NULL)
 		return (0);
 	startIndex = 0;
 	while (ft_isCharInSet(str[startIndex], set))

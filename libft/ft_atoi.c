@@ -1,13 +1,14 @@
 #include <limits.h>
 #include <stdio.h>
+
 static int	ft_getSignal(const char *str, int *i)
 {
-	int signal;
+	int	signal;
 
 	signal = 1;
-	if ( *(str + *i) == '+' || *(str + *i) == '-')
+	if (*(str + *i) == '+' || *(str + *i) == '-')
 	{
-		if ( *(str + *i) == '-')
+		if (*(str + *i) == '-')
 			signal = -1;
 		i[0]++;
 	}
@@ -17,7 +18,7 @@ static int	ft_getSignal(const char *str, int *i)
 int	ft_atoi(const char *str)
 {
 	int	i;
-	long long int	number;
+	int	number;
 	int	signal;
 	int	count;
 
@@ -35,7 +36,7 @@ int	ft_atoi(const char *str)
 	}
 	if (count > 10 && signal == -1)
 		return (0);
-	else if(count > 10 && signal == 1)
+	else if (count > 10 && signal == 1)
 		return (-1);
 	return (number);
 }

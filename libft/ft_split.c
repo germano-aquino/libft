@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 static int	ft_getNumberOfStrings(const char *s, char c)
 {
@@ -23,18 +25,17 @@ static int	ft_getNumberOfStrings(const char *s, char c)
 	return (counter);
 }
 
-static int	ft_getNextValidIndex(char const *s, char c, int index)
+static void	ft_getValidIndexes(char const *s, char c, int *sindex, int *eindex)
 {
+	int	index;
+
+	index = *sindex;
 	while (s[index] == c)
 		index++;
-	return (index);
-}
-
-static int	ft_getLastValidIndex(char const *s, char c, int index)
-{
-	while (s[index] != c)
+	*sindex = index;
+	while (s[index] != c || s[index] == '\0')
 		index++;
-	return (index - 1);
+	*eindex = index - 1;
 }
 
 static void	ft_copyStringToPtr(char const *s, int startIndex, int endIndex,
@@ -51,30 +52,49 @@ static void	ft_copyStringToPtr(char const *s, int startIndex, int endIndex,
 	ptr[i] = '\0';
 }
 
+static void	ft_variablesInitiation(int *i, int *sIndex)
+{
+	*i = 0;
+	*sIndex = 0;
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		startIndex;
 	int		endIndex;
+	int		nStr;
 	int		i;
-	char	**ptr;
+	char	**split;
 
-	ptr = (char **) malloc(sizeof(char *) * (ft_getNumberOfStrings(s, c) + 1));
-	if (!ptr || !s)
+	ft_variablesInitiation(&i, &startIndex);
+	nStr = ft_getNumberOfStrings(s, c);
+	printf("%d\n", nStr);
+	if (s == NULL)
 		return (0);
-	i = 0;
-	startIndex = 0;
-	while (i < ft_getNumberOfStrings(s, c))
+	split = (char **) malloc(sizeof(char *) * (nStr + 1));
+	if (split == NULL)
+		return (0);
+	while (i < nStr)
 	{
-		startIndex = ft_getNextValidIndex(s, c, startIndex);
-		endIndex = ft_getLastValidIndex(s, c, startIndex);
-		ptr[i] = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2));
-		if (!ptr[i])
+		ft_getValidIndexes(s, c, &startIndex, &endIndex);
+		split[i] = (char *) malloc(sizeof(char) * (endIndex - startIndex + 2));
+		if (split[i] == NULL)
 			return (0);
-		ft_copyStringToPtr(s, startIndex, endIndex, ptr[i]);
+		ft_copyStringToPtr(s, startIndex, endIndex, split[i]);
+		//printf("palavra[%d]: %s %lu\n", i, split[i], strlen(split[i]));
 		startIndex = endIndex + 1;
 		i++;
 	}
-	ptr[i] = (char *) malloc(sizeof(char) * 1);
-	ptr[i] = NULL;
-	return (ptr);
+	split[i] = NULL;
+	return (split);
 }
+/* 
+int main()
+{
+	char **split;
+	int i;
+
+	split = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
+	for (i = 0; i < 13; i++) printf("palavras: %s\n", split[i]);
+	return (0);
+} */

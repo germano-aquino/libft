@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static void	ft_calculateNumber(int numberOfDigits, int n, int isNegative, char *number)
+static void	ft_calculateNumber(int numberOfDigits, int n, int isNegative,
+	 char *number)
 {
 	while (numberOfDigits != isNegative - 1)
 	{
@@ -44,8 +45,8 @@ char	*ft_itoa(int n)
 			return (ft_strdup("-2147483648"));
 		n = -n;
 	}
-	number = (char *) malloc(sizeof(char) * (numberOfDigits + 1 + isNegative));
-	if (!number)
+	number = (char *)malloc(sizeof(char) * (numberOfDigits + 1 + isNegative));
+	if (number == NULL)
 		return (0);
 	number[numberOfDigits + isNegative] = '\0';
 	if (!isNegative)
