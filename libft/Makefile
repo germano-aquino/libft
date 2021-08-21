@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: grenato- <grenato-@student.42sp.org.br     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/08/21 11:25:54 by grenato-          #+#    #+#              #
+#    Updated: 2021/08/21 15:27:07 by grenato-         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # Rules that must have in makefile
 # $(NAME), all, clean, fclean and re.
 
@@ -68,11 +80,9 @@ OBJ = $(C_SOURCE:.c=.o)
 B_OBJ = $(B_SOURCE:.c=.o)
 
 all: $(NAME)
+
 $(NAME): $(OBJ) $(B_OBJ)
 	ar rcs $(NAME) $(OBJ) 
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(C_SOURCE) $(B_SOURCE)
-	gcc -nostartfiles -shared -o libft.so $(OBJ) $(B_OBJ)
 
 clean:
 	rm -rf $(OBJ) $(B_OBJ)
